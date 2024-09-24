@@ -1,39 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CardExpense() {
-  const [dados] = useState([
-    {
-      day: "mon",
-      amount: 17.45,
-    },
-    {
-      day: "tue",
-      amount: 34.91,
-    },
-    {
-      day: "wed",
-      amount: 52.36,
-    },
-    {
-      day: "thu",
-      amount: 31.07,
-    },
-    {
-      day: "fri",
-      amount: 23.39,
-    },
-    {
-      day: "sat",
-      amount: 43.28,
-    },
-    {
-      day: "sun",
-      amount: 25.48,
-    },
-  ]);
-    
-  //const totalAmount = dados.reduce((acc, item) => acc + item.amount, 0);
 
+  const [dados, setDados] = useState([]);
+
+  useEffect(() => {
+    fetch("../../public/_data/data.json")
+      .then((response) => response.json())
+      .then((data) => setDados(data))
+      .catch((error) => console.error("Erro ao carregar dados:", error));
+  }, []);
+    
   const calcularAltura = (valor) => {
     return valor * 5;
   };
