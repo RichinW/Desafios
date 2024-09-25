@@ -5,7 +5,7 @@ export default function CardExpense() {
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
-    fetch("../../public/_data/data.json")
+      fetch("/data.json")
       .then((response) => response.json())
       .then((data) => setDados(data))
       .catch((error) => console.error("Erro ao carregar dados:", error));
