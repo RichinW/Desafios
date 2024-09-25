@@ -10,7 +10,10 @@ export default function CardExpense() {
       .then((data) => setDados(data))
       .catch((error) => console.error("Erro ao carregar dados:", error));
   }, []);
-
+  interface ExpenseItem {
+    amount: number;
+    day: string;
+  }
   const [tamanhoTela, setTamanhoTela] = useState(window.innerWidth);
 
   const handleResize = () => {
@@ -30,7 +33,7 @@ export default function CardExpense() {
     <div className="h-2/4 md:h-3/5 2xl:h-2/3 md:w-10/12 w-11/12 2xl:w-4/12 bg-white rounded-3xl p-4 md:p-10 2xl:p-10 flex flex-col justify-between">
       <p className="text-black font-bold text-2xl md:text-4xl lg:text-6xl 2xl:text-3xl">Spending - Last 7 days</p>
       <div className="w-full flex justify-between md:justify-around 2xl:justify-between items-end md:my-4 2xl:my-10 ">
-        {dados.map((item) => (
+        {dados.map((item: ExpenseItem) => (
           <div className="flex max-w-10 flex-col justify-center items-center group">
             <div className="text-white w-12 2xl:w-20 md:w-20 lg:w-28 md:h-12 lg:h-20 h-8 2xl:h-12 flex justify-center items-center font-semibold text-sm md:text-2xl lg:text-3xl 2xl:text-xl rounded-md bg-amber-950 opacity-0 group-hover:opacity-100 transition-opacity duration-100 mb-2">${item.amount}</div>
             <div
